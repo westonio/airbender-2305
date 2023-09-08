@@ -30,21 +30,46 @@ RSpec.describe 'Search Index', type: :feature do
       it 'for the first 25 members of the nation' do
         expect(page).to have_css('div.character-info', count: 25)
       end
-
+      
       it 'shows the members names and photo (if they have one)' do
-
+        expect(page).to have_css('h4.character-name', count: 25)
+        expect(page).to have_css('img.character-photo', count: 24)
+        
+        within('div#character-Azula') do
+          expect(page).to have_content('Azula')
+        end
       end
 
       it 'shows a list of their allies or "none" ' do
+        expect(page).to have_css('p.character-allies', count: 25)
+        
+        within('div#character-Azula') do
+          expect(page).to have_content('Allies: Ozai, Zuko')
+        end
 
+        within('div#character-EmberIslandPlayers') do
+          expect(page).to have_content('Allies: None')
+        end
       end
 
       it 'shows a list of their enemies or "none" ' do
+        expect(page).to have_css('p.character-enemies', count: 25)
+        
+        within('div#character-Azula') do
+          expect(page).to have_content('Enemies: Iroh, Zuko, Kuei, Long Feng, Mai, Ty Lee, Ursa')
+        end
 
+        within('div#character-EmberIslandPlayers') do
+          expect(page).to have_content('Enemies: None')
+        end
       end
 
       it 'shows any affiliations that member has' do
-
+        expect(page).to have_css('p.character-affilitation', count: 25)
+        
+        within('div#character-Azula') do
+          expect(page).to have_content("Affiliation: Azula's team (formerly) Dai Li (formerly) Fire Nation Fire Nation Royal Family Fire Warriors Royal Fire Academy for Girls (formerly)")
+        end
       end
     end
   end

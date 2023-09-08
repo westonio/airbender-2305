@@ -4,15 +4,15 @@
 
 <h3>First 25 Members of this nation</h3>
 <% @facade.first_25_characters.each do |character| %>
-  <div class="character-info">
+  <div class="character-info" id="character-<%= character.name.gsub(' ', '') %>">
     <h4 class="character-name"><%= character.name %></h4>
     
     <% if character.photo_url.present? %>
       <img class="character-photo" src="<%= character.photo_url %>" width="200" height="150" > 
     <% end %>
 
-    <p>Allies: <%= character.allies.join(', ') %></p>
-    <p>Enemies: <%= character.enemies.join(', ') %></p>
-    <p>Affiliation: <%= character.affiliation %></p>
+    <p class="character-allies">Allies: <%= character.allies.empty? ? "None" : character.allies.join(', ') %></p>
+    <p class="character-enemies">Enemies: <%= character.enemies.empty? ? "None" : character.enemies.join(', ') %></p>
+    <p class="character-affilitation">Affiliation: <%= character.affiliation %></p>
   </div>
 <% end %>

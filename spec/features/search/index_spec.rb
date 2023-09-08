@@ -23,12 +23,12 @@ RSpec.describe 'Search Index', type: :feature do
     end
 
     it 'shows the total number of people living in the nation' do
-
+      expect(page).to have_content("97 people live in the Fire Nation")
     end
 
     context 'has a list of detailed member information' do
       it 'for the first 25 members of the nation' do
-
+        expect(page).to have_css('div.character-info', count: 25)
       end
 
       it 'shows the members names and photo (if they have one)' do

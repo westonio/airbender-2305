@@ -7,4 +7,8 @@ module ApplicationHelper
     ['Water Tribes', 'water+tribes'],
   ]
   end
+
+  def format_nation(nation)
+    nation.gsub('+', ' ').split.map(&:capitalize).join(' ')
+  end
 end

@@ -1,0 +1,18 @@
+<h1>Last Airbender Nation Search</h1>
+
+<h2><%= @facade.character_count %> people live in the <%= format_nation(@facade.nation) %></h2>
+
+<h3>First 25 Members of this nation</h3>
+<% @facade.first_25_characters.each do |character| %>
+  <div class="character-info">
+    <h4 class="character-name"><%= character.name %></h4>
+    
+    <% if character.photo_url.present? %>
+      <img class="character-photo" src="<%= character.photo_url %>" width="200" height="150" > 
+    <% end %>
+
+    <p>Allies: <%= character.allies.join(', ') %></p>
+    <p>Enemies: <%= character.enemies.join(', ') %></p>
+    <p>Affiliation: <%= character.affiliation %></p>
+  </div>
+<% end %>

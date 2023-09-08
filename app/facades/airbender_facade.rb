@@ -5,8 +5,19 @@ class AirbenderFacade
     @nation = nation
   end
 
-  def nation_characters
+  def first_25_characters
+    json = character_data
+    json.first(25).map do |character_data|
+      Character.new(character_data)
+    end
+  end
+
+  def character_count
+    character_data.count
+  end
+
+  def character_data
     service = AirbenderService.new
-    characters = service.get_nation_characters(@nation)
+    @_characters_data ||= service.get_nation_characters(@nation)
   end
 end
